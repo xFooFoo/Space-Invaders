@@ -1,4 +1,4 @@
-import pygame, random
+import pygame, random, asyncio
 from spaceship import Spaceship
 from obstacle import Obstacle, grid
 from alien import Alien, MysteryShip
@@ -74,7 +74,8 @@ class Game:
 			self.aliens_lasers_group.add(laser_sprite)
 
 	def create_mystery_ship(self):
-		self.mysteryship_group.add(MysteryShip(self.screen_width, self.offset))
+		if self.mysteryship_group.sprites() == []:
+			self.mysteryship_group.add(MysteryShip(self.screen_width, self.offset))
 
 	def check_for_collisions(self):
 		#Spaceship's laser
